@@ -12,8 +12,9 @@ namespace ZxVentures.BackendChallenge.Infrastructure.Repository
     {
         public PDVRepository(DatabaseContext databaseContext) : base(databaseContext)
         {
-
+         
         }
+
         public async Task<IEnumerable<PDV>> Search(double lng, double lat)
         {
             var point = GeoJson.Point(GeoJson.Geographic(lng, lat));

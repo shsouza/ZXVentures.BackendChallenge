@@ -4,14 +4,18 @@ using MongoDB.Driver;
 using MongoDB.Driver.Core.Events;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using ZXVentures.BackendChallenge.Domain;
 using ZXVentures.BackendChallenge.Domain.People;
+using ZXVentures.BackendChallenge.Infrastructure.Migration;
 
 namespace ZxVentures.BackendChallenge.Infrastructure.Data
 {
     public class DatabaseContext
     {
         readonly MongoClient mongoClient;
+
+        private const string DATABASE_NAME = "zxventures_pdv";
 
         public DatabaseContext()
         {
@@ -29,11 +33,29 @@ namespace ZxVentures.BackendChallenge.Infrastructure.Data
                     }
                 }
             );
+
+            if (!DataBaseExists())
+            {
+                DatabaseMigrator.Migrate(this);
+            }
         }
 
-        public IMongoDatabase GetDatabase(string name)
+        private bool DataBaseExists()
         {
-            return mongoClient.GetDatabase(name);
+            using (var cursor = mongoClient.ListDatabases())
+            {
+                var databaseDocuments = cursor.ToList();
+
+                if (databaseDocuments.Any(d => d["name"] == DATABASE_NAME))
+                    return true;
+            }
+
+            return false;
+        }
+
+        public IMongoDatabase GetDatabase()
+        {
+            return mongoClient.GetDatabase(DATABASE_NAME);
         }
 
         public static void Configure()

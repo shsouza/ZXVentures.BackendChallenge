@@ -41,7 +41,7 @@ namespace ZxVentures.BackendChallenge.Infrastructure.Tests
 
             var adrress = new GeoJsonPoint<GeoJson2DCoordinates>(new GeoJson2DCoordinates(0, 0));
 
-            var pdv = new PDV(new LegalPeople("foo", "bar", "123", new NaturalPeople("xyz")), coverageArea, adrress);
+            var pdv = new PDV("1", new LegalPeople("foo", "bar", "123", new NaturalPeople("xyz")), coverageArea, adrress);
 
             await repository.Add(pdv);
         }
@@ -76,7 +76,7 @@ namespace ZxVentures.BackendChallenge.Infrastructure.Tests
 
             var adrress = new GeoJsonPoint<GeoJson2DCoordinates>(new GeoJson2DCoordinates(0, 0));
 
-            var pdv = new PDV(new LegalPeople("foo", "bar", "123", new NaturalPeople("xyz")), coverageArea, adrress);
+            var pdv = new PDV("1",new LegalPeople("foo", "bar", "123", new NaturalPeople("xyz")), coverageArea, adrress);
 
             await repository.Add(pdv);
 
@@ -116,7 +116,7 @@ namespace ZxVentures.BackendChallenge.Infrastructure.Tests
 
             var adrress = new GeoJsonPoint<GeoJson2DCoordinates>(new GeoJson2DCoordinates(0, 0));
 
-            var pdv = new PDV(new LegalPeople("foo", "bar", "123", new NaturalPeople("xyz")), coverageArea, adrress);
+            var pdv = new PDV("1", new LegalPeople("foo", "bar", "123", new NaturalPeople("xyz")), coverageArea, adrress);
 
             await repository.Add(pdv);
 
@@ -159,7 +159,7 @@ namespace ZxVentures.BackendChallenge.Infrastructure.Tests
 
             var adrress = new GeoJsonPoint<GeoJson2DCoordinates>(new GeoJson2DCoordinates(0, 0));
 
-            var pdv = new PDV(new LegalPeople("foo", "bar", "123", new NaturalPeople("xyz")), coverageArea, adrress);
+            var pdv = new PDV("1", new LegalPeople("foo", "bar", "123", new NaturalPeople("xyz")), coverageArea, adrress);
 
             await repository.Add(pdv);
 
@@ -200,7 +200,7 @@ namespace ZxVentures.BackendChallenge.Infrastructure.Tests
 
             var adrress = new GeoJsonPoint<GeoJson2DCoordinates>(new GeoJson2DCoordinates(0, 0));
 
-            var pdv = new PDV(new LegalPeople("foo", "bar", "123", new NaturalPeople("xyz")), coverageArea, adrress);
+            var pdv = new PDV("1", new LegalPeople("foo", "bar", "123", new NaturalPeople("xyz")), coverageArea, adrress);
 
             await repository.Add(pdv);
 

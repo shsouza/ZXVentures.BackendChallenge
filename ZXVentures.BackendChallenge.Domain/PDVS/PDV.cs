@@ -18,7 +18,7 @@ namespace ZXVentures.BackendChallenge.Domain
 
         protected PDV() { }
 
-        public PDV(LegalPeople company, GeoJsonMultiPolygon<GeoJson2DCoordinates> coverageArea, GeoJsonPoint<GeoJson2DCoordinates> address)
+        public PDV(string code, LegalPeople company, GeoJsonMultiPolygon<GeoJson2DCoordinates> coverageArea, GeoJsonPoint<GeoJson2DCoordinates> address)
         {
             if (company == null)
                 throw new ArgumentException("A empresa é necessária.");
@@ -29,6 +29,7 @@ namespace ZXVentures.BackendChallenge.Domain
             if (address == null)
                 throw new ArgumentException("O endereço é necessário.");
 
+            Code = code;
             Id = Guid.NewGuid();
             Company = company;
             CoverageArea = coverageArea;

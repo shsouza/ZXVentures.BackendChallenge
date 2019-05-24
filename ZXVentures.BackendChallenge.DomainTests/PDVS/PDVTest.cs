@@ -11,15 +11,25 @@ namespace ZXVentures.BackendChallenge.DomainTests
         [TestMethod]
         public void Constructor_CompanyValidation()
         {
-            Assert.ThrowsException<ArgumentException>(() => new PDV(null, new { }, new { }));
+            Assert.ThrowsException<ArgumentException>(() => new PDV("0", null, null, null));
         }
 
         [TestMethod]
-        public void Constructor_Setter()
+        public void Constructor_CodeSetter()
         {
             var legalPeople = new LegalPeople("foo", "bar", "xyz", new NaturalPeople("xyz"));
 
-            var pdv = new PDV(legalPeople, new { }, new { });
+            var pdv = new PDV("1", legalPeople, null, null);
+
+            Assert.AreSame("1", pdv.Code);
+        }
+
+        [TestMethod]
+        public void Constructor_CompanySetter()
+        {
+            var legalPeople = new LegalPeople("foo", "bar", "xyz", new NaturalPeople("xyz"));
+
+            var pdv = new PDV("1", legalPeople, null, null);
 
             Assert.AreSame(legalPeople, pdv.Company);
         }
