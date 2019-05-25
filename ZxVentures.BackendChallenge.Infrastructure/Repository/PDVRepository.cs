@@ -15,9 +15,9 @@ namespace ZxVentures.BackendChallenge.Infrastructure.Repository
          
         }
 
-        public async Task<IEnumerable<PDV>> Search(double lng, double lat)
+        public async Task<List<PDV>> Search(double x, double y)
         {
-            var point = GeoJson.Point(GeoJson.Geographic(lng, lat));
+            var point = GeoJson.Point(GeoJson.Geographic(x, y));
 
             var filter = Builders<PDV>.Filter.GeoIntersects(p => p.CoverageArea, point);
 

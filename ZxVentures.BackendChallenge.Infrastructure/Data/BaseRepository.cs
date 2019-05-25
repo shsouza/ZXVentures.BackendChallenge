@@ -20,7 +20,7 @@ namespace ZxVentures.BackendChallenge.Infrastructure
 
         protected IMongoCollection<T> GetCollection()
         {
-            return databaseContext.GetDatabase().GetCollection<T>(typeof(T).Name);
+            return databaseContext.GetDatabase().GetCollection<T>(typeof(T).Name.ToLower());
         }
 
         public virtual async Task Add(T model)

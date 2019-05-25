@@ -33,6 +33,20 @@ namespace ZxVentures.BackendChallenge.Infrastructure.Data
                     }
                 }
             );
+        }
+
+        public IMongoDatabase GetDatabase()
+        {
+            return mongoClient.GetDatabase(DATABASE_NAME);
+        }
+
+        public void Configure()
+        {
+            BsonSerializer.RegisterSerializer(typeof(DateTime), new DateTimeSerializer(DateTimeKind.Local));
+
+            BsonClassMap.RegisterClassMap<PDV>();
+            BsonClassMap.RegisterClassMap<NaturalPeople>();
+            BsonClassMap.RegisterClassMap<LegalPeople>();
 
             if (!DataBaseExists())
             {
@@ -51,20 +65,6 @@ namespace ZxVentures.BackendChallenge.Infrastructure.Data
             }
 
             return false;
-        }
-
-        public IMongoDatabase GetDatabase()
-        {
-            return mongoClient.GetDatabase(DATABASE_NAME);
-        }
-
-        public static void Configure()
-        {
-            BsonSerializer.RegisterSerializer(typeof(DateTime), new DateTimeSerializer(DateTimeKind.Local));
-
-            BsonClassMap.RegisterClassMap<PDV>();
-            BsonClassMap.RegisterClassMap<NaturalPeople>();
-            BsonClassMap.RegisterClassMap<LegalPeople>();
         }
     }
 }

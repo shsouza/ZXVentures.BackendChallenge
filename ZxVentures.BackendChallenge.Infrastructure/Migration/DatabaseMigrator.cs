@@ -1,9 +1,8 @@
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.GeoJsonObjectModel;
+﻿using MongoDB.Driver;
 using System.Collections.Generic;
 using ZxVentures.BackendChallenge.Infrastructure.Data;
 using ZXVentures.BackendChallenge.Domain;
+using ZXVentures.BackendChallenge.Domain.GeoJSON;
 using ZXVentures.BackendChallenge.Domain.People;
 
 namespace ZXVentures.BackendChallenge.Infrastructure.Migration
@@ -22,7 +21,7 @@ namespace ZXVentures.BackendChallenge.Infrastructure.Migration
             var options = new CreateIndexOptions() { Unique = true };
             var indexKeyDefinition = new IndexKeysDefinitionBuilder<PDV>().Ascending(p => p.Company.Document);
             var indexModel = new CreateIndexModel<PDV>(indexKeyDefinition, options);
-            context.GetDatabase().GetCollection<PDV>(typeof(PDV).Name).Indexes.CreateOne(indexModel);
+            context.GetDatabase().GetCollection<PDV>(typeof(PDV).Name.ToLower()).Indexes.CreateOne(indexModel);
         }
 
         private static void InitialLoad(DatabaseContext context)
@@ -83,38 +82,16 @@ namespace ZXVentures.BackendChallenge.Infrastructure.Migration
 
             foreach (var item in pdvs)
             {
-                context.GetDatabase().GetCollection<PDV>(typeof(PDV).Name).InsertOne(item);
-            }           
+                context.GetDatabase().GetCollection<PDV>(typeof(PDV).Name.ToLower()).InsertOne(item);
+            }
 
         }
 
-        private static PDV NewPDV(string code, string tradingName, string owner, string document, double[,] coveragePoints, double[] addressPoints)
+        public static PDV NewPDV(string code, string tradingName, string owner, string document, double[,] coveragePoints, double[] addressPoint)
         {
-            var coverageCordinates = new List<GeoJson2DCoordinates>();
+            var coverageArea = GeoJSONFactory.NewMultiPolygon(coveragePoints);
 
-            for (int i = 0; i < coveragePoints.GetLength(0); i++)
-            {
-                coverageCordinates.Add(new GeoJson2DCoordinates(coveragePoints[i, 0], coveragePoints[i, 1]));
-            }
-
-            var coverageArea = new GeoJsonMultiPolygon<GeoJson2DCoordinates>
-            (
-                new GeoJsonMultiPolygonCoordinates<GeoJson2DCoordinates>
-                (
-                    new GeoJsonPolygonCoordinates<GeoJson2DCoordinates>[]
-                    {
-                        new GeoJsonPolygonCoordinates<GeoJson2DCoordinates>
-                        (
-                            new GeoJsonLinearRingCoordinates<GeoJson2DCoordinates>
-                            (
-                                coverageCordinates
-                            )
-                        )
-                    }
-                )
-            );
-
-            var adrress = new GeoJsonPoint<GeoJson2DCoordinates>(new GeoJson2DCoordinates(addressPoints[0], addressPoints[1]));
+            var adrress = GeoJSONFactory.NewPoint(addressPoint[0], addressPoint[1]);
 
             return new PDV(code, new LegalPeople(tradingName, tradingName, document, new NaturalPeople(owner)), coverageArea, adrress);
         }

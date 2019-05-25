@@ -1,9 +1,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MongoDB.Driver.GeoJsonObjectModel;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using ZxVentures.BackendChallenge.Infrastructure.Repository;
 using ZXVentures.BackendChallenge.Domain;
+using ZXVentures.BackendChallenge.Domain.GeoJSON;
 using ZXVentures.BackendChallenge.Domain.People;
 
 namespace ZxVentures.BackendChallenge.Infrastructure.Tests
@@ -16,32 +18,12 @@ namespace ZxVentures.BackendChallenge.Infrastructure.Tests
         {
             var repository = new PDVRepository(new Data.DatabaseContext());
 
-            var coverageArea = new GeoJsonMultiPolygon<GeoJson2DCoordinates>
-            (
-                new GeoJsonMultiPolygonCoordinates<GeoJson2DCoordinates>
-                (
-                    new GeoJsonPolygonCoordinates<GeoJson2DCoordinates>[]
-                    {
-                        new GeoJsonPolygonCoordinates<GeoJson2DCoordinates>
-                        (
-                            new GeoJsonLinearRingCoordinates<GeoJson2DCoordinates>
-                            (
-                                new GeoJson2DCoordinates[]
-                                {
-                                    new GeoJson2DCoordinates(0, 0),
-                                    new GeoJson2DCoordinates(0, 0),
-                                    new GeoJson2DCoordinates(0, 0),
-                                    new GeoJson2DCoordinates(0, 0)
-                                }
-                            )
-                        )
-                    }
-                )
-            );
+            var document = Guid.NewGuid().ToString();
 
-            var adrress = new GeoJsonPoint<GeoJson2DCoordinates>(new GeoJson2DCoordinates(0, 0));
+            var coverageArea = GeoJSONFactory.NewMultiPolygon(new double[,] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } });
+            var address = GeoJSONFactory.NewPoint(0, 0);
 
-            var pdv = new PDV("1", new LegalPeople("foo", "bar", "123", new NaturalPeople("xyz")), coverageArea, adrress);
+            var pdv = new PDV("1", new LegalPeople("foo", "bar", document, new NaturalPeople("xyz")), coverageArea, address);
 
             await repository.Add(pdv);
         }
@@ -51,32 +33,12 @@ namespace ZxVentures.BackendChallenge.Infrastructure.Tests
         {
             var repository = new PDVRepository(new Data.DatabaseContext());
 
-            var coverageArea = new GeoJsonMultiPolygon<GeoJson2DCoordinates>
-            (
-                new GeoJsonMultiPolygonCoordinates<GeoJson2DCoordinates>
-                (
-                    new GeoJsonPolygonCoordinates<GeoJson2DCoordinates>[]
-                    {
-                        new GeoJsonPolygonCoordinates<GeoJson2DCoordinates>
-                        (
-                            new GeoJsonLinearRingCoordinates<GeoJson2DCoordinates>
-                            (
-                                new GeoJson2DCoordinates[]
-                                {
-                                    new GeoJson2DCoordinates(0, 0),
-                                    new GeoJson2DCoordinates(0, 0),
-                                    new GeoJson2DCoordinates(0, 0),
-                                    new GeoJson2DCoordinates(0, 0)
-                                }
-                            )
-                        )
-                    }
-                )
-            );
+            var document = Guid.NewGuid().ToString();
 
-            var adrress = new GeoJsonPoint<GeoJson2DCoordinates>(new GeoJson2DCoordinates(0, 0));
+            var coverageArea = GeoJSONFactory.NewMultiPolygon(new double[,] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } });
+            var address = GeoJSONFactory.NewPoint(0, 0);
 
-            var pdv = new PDV("1",new LegalPeople("foo", "bar", "123", new NaturalPeople("xyz")), coverageArea, adrress);
+            var pdv = new PDV("1",new LegalPeople("foo", "bar", document, new NaturalPeople("xyz")), coverageArea, address);
 
             await repository.Add(pdv);
 
@@ -91,32 +53,12 @@ namespace ZxVentures.BackendChallenge.Infrastructure.Tests
         {
             var repository = new PDVRepository(new Data.DatabaseContext());
 
-            var coverageArea = new GeoJsonMultiPolygon<GeoJson2DCoordinates>
-            (
-                new GeoJsonMultiPolygonCoordinates<GeoJson2DCoordinates>
-                (
-                    new GeoJsonPolygonCoordinates<GeoJson2DCoordinates>[]
-                    {
-                        new GeoJsonPolygonCoordinates<GeoJson2DCoordinates>
-                        (
-                            new GeoJsonLinearRingCoordinates<GeoJson2DCoordinates>
-                            (
-                                new GeoJson2DCoordinates[]
-                                {
-                                    new GeoJson2DCoordinates(0, 0),
-                                    new GeoJson2DCoordinates(0, 0),
-                                    new GeoJson2DCoordinates(0, 0),
-                                    new GeoJson2DCoordinates(0, 0)
-                                }
-                            )
-                        )
-                    }
-                )
-            );
+            var document = Guid.NewGuid().ToString();
 
-            var adrress = new GeoJsonPoint<GeoJson2DCoordinates>(new GeoJson2DCoordinates(0, 0));
+            var coverageArea = GeoJSONFactory.NewMultiPolygon(new double[,] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } });
+            var address = GeoJSONFactory.NewPoint(0, 0);
 
-            var pdv = new PDV("1", new LegalPeople("foo", "bar", "123", new NaturalPeople("xyz")), coverageArea, adrress);
+            var pdv = new PDV("1", new LegalPeople("foo", "bar", document, new NaturalPeople("xyz")), coverageArea, address);
 
             await repository.Add(pdv);
 
@@ -159,7 +101,9 @@ namespace ZxVentures.BackendChallenge.Infrastructure.Tests
 
             var adrress = new GeoJsonPoint<GeoJson2DCoordinates>(new GeoJson2DCoordinates(0, 0));
 
-            var pdv = new PDV("1", new LegalPeople("foo", "bar", "123", new NaturalPeople("xyz")), coverageArea, adrress);
+            var document = Guid.NewGuid().ToString();
+
+            var pdv = new PDV("1", new LegalPeople("foo", "bar", document, new NaturalPeople("xyz")), coverageArea, adrress);
 
             await repository.Add(pdv);
 
@@ -200,7 +144,9 @@ namespace ZxVentures.BackendChallenge.Infrastructure.Tests
 
             var adrress = new GeoJsonPoint<GeoJson2DCoordinates>(new GeoJson2DCoordinates(0, 0));
 
-            var pdv = new PDV("1", new LegalPeople("foo", "bar", "123", new NaturalPeople("xyz")), coverageArea, adrress);
+            var document = Guid.NewGuid().ToString();
+
+            var pdv = new PDV("1", new LegalPeople("foo", "bar", document, new NaturalPeople("xyz")), coverageArea, adrress);
 
             await repository.Add(pdv);
 
