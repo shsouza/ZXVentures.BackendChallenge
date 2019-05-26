@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using ZXVentures.BackendChallenge.Domain;
+using ZXVentures.BackendChallenge.Domain.GeoJSON;
 using ZXVentures.BackendChallenge.Domain.People;
 
 namespace ZXVentures.BackendChallenge.DomainTests
@@ -19,7 +20,10 @@ namespace ZXVentures.BackendChallenge.DomainTests
         {
             var legalPeople = new LegalPeople("foo", "bar", "xyz", new NaturalPeople("xyz"));
 
-            var pdv = new PDV("1", legalPeople, null, null);
+            var coverageArea = GeoJSONFactory.NewMultiPolygon(new double[,] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } });
+            var address = GeoJSONFactory.NewPoint(0, 0);
+
+            var pdv = new PDV("1", legalPeople, coverageArea, address);
 
             Assert.AreSame("1", pdv.Code);
         }
@@ -29,7 +33,10 @@ namespace ZXVentures.BackendChallenge.DomainTests
         {
             var legalPeople = new LegalPeople("foo", "bar", "xyz", new NaturalPeople("xyz"));
 
-            var pdv = new PDV("1", legalPeople, null, null);
+            var coverageArea = GeoJSONFactory.NewMultiPolygon(new double[,] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } });
+            var address = GeoJSONFactory.NewPoint(0, 0);
+
+            var pdv = new PDV("1", legalPeople, coverageArea, address);
 
             Assert.AreSame(legalPeople, pdv.Company);
         }
