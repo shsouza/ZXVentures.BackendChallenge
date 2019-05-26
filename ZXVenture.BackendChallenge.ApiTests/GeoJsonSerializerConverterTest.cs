@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MongoDB.Driver.GeoJsonObjectModel;
-using ZXVenture.BackendChallenge.Api;
+using ZXVentures.BackendChallenge.Api;
 
 namespace ZXVenture.BackendChallenge.ApiTests
 {
