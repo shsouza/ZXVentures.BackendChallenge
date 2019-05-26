@@ -3,7 +3,7 @@ using ZxVentures.BackendChallenge.Application.PDVS;
 using ZxVentures.BackendChallenge.Infrastructure.Data;
 using ZxVentures.BackendChallenge.Infrastructure.Repository;
 
-namespace ZXVenture.BackendChallenge.Api
+namespace ZXVentures.BackendChallenge.Api
 {
     public static class DependencyInjectionConfigurator
     {

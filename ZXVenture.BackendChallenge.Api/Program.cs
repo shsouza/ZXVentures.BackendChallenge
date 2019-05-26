@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace ZXVenture.BackendChallenge.Api
+namespace ZXVentures.BackendChallenge.Api
 {
     public class Program
     {

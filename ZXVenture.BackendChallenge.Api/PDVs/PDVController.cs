@@ -6,7 +6,7 @@ using ZxVentures.BackendChallenge.Application.PDVS;
 using ZXVentures.BackendChallenge.Application.PDVS;
 using ZXVentures.BackendChallenge.Domain;
 
-namespace ZXVenture.BackendChallenge.Api.PDVs
+namespace ZXVentures.BackendChallenge.Api.PDVs
 {
     [Route("api/[controller]")]
     public class PDVController : Controller

@@ -20,11 +20,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		pdvs.json = pdvs.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZXVentures.BackendChallenge.ApplicationTests", "ZXVentures.BackendChallenge.ApplicationTests\ZXVentures.BackendChallenge.ApplicationTests.csproj", "{CD903CE1-72DB-4989-83A4-EB415E59816F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZXVentures.BackendChallenge.ApplicationTests", "ZXVentures.BackendChallenge.ApplicationTests\ZXVentures.BackendChallenge.ApplicationTests.csproj", "{CD903CE1-72DB-4989-83A4-EB415E59816F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZXVenture.BackendChallenge.Api", "ZXVenture.BackendChallenge.Api\ZXVenture.BackendChallenge.Api.csproj", "{41DD2375-3DB9-4C29-81C5-BF65A4517838}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZXVentures.BackendChallenge.Api", "ZXVenture.BackendChallenge.Api\ZXVentures.BackendChallenge.Api.csproj", "{41DD2375-3DB9-4C29-81C5-BF65A4517838}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZXVenture.BackendChallenge.ApiTests", "ZXVenture.BackendChallenge.ApiTests\ZXVenture.BackendChallenge.ApiTests.csproj", "{92B07401-99B5-49FB-B70B-7627F527A28A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZXVenture.BackendChallenge.ApiTests", "ZXVenture.BackendChallenge.ApiTests\ZXVenture.BackendChallenge.ApiTests.csproj", "{92B07401-99B5-49FB-B70B-7627F527A28A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

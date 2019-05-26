@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 
-namespace ZXVenture.BackendChallenge.Api
+namespace ZXVentures.BackendChallenge.Api
 {
     public class GeoJsonSerializerConverter : JsonConverter
     {

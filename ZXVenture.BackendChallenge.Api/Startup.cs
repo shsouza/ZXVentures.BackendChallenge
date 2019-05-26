@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 using ZxVentures.BackendChallenge.Infrastructure.Data;
 
-namespace ZXVenture.BackendChallenge.Api
+namespace ZXVentures.BackendChallenge.Api
 {
     public class Startup
     {
