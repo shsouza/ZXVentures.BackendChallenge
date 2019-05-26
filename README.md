@@ -23,17 +23,20 @@ sudo apt update
 sudo apt install -y mongodb
 ```
 
-# Deploy
-
-```
-dotnet ZXVentures.BackendChallenge/ZXVenture.BackendChallenge.Api/bin/Debug/netcoreapp2.1/ZXVenture.BackendChallenge.Api.dll
-```
-
 # Testes
 
 ```
 dotnet test
 ```
+
+# Deploy
+
+```
+dotnet build
+dotnet /ZXVenture.BackendChallenge.Api/bin/Debug/netcoreapp2.1/ZXVenture.BackendChallenge.Api.dll
+```
+
+
 
 # Api
 
